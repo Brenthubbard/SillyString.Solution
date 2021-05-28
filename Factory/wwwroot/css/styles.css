@@ -11,5 +11,9 @@ div#footer {
   padding:8px;
 }
 body {
-  background-color: bisque;
+  background-color: lightblue;
+}
+h4 {
+text-align: center;
+
 }
