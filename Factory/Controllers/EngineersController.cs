@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace Factory.Controllers
 {
@@ -19,16 +20,6 @@ namespace Factory.Controllers
     {
       return View(_db.Engineers.ToList());
     }
-
-    public ActionResult Details(int id)
-    {
-      var thisEngineer = _db.Engineers
-        .Include(engineer => engineer.JoinEntities)
-        .ThenInclude(join => join.Machine)
-        .FirstOrDefault(engineer => engineer.EngineerId == id);
-      return View(thisEngineer);
-    }
-
 
     public ActionResult Create()
     {
@@ -48,6 +39,16 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+    public ActionResult Details(int id)
+    {
+      var thisEngineer = _db.Engineers
+        .Include(engineer => engineer.JoinEntities)
+        .ThenInclude(join => join.Machine)
+        .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
+    }
+
+
 
     public ActionResult Edit(int id)
     {
