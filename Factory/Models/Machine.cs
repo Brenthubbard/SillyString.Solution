@@ -15,8 +15,8 @@ namespace Factory.Models
     public int MachineId { get; set; }
     [Required]
     public string Name { get; set; }
-    // [Required]
-    // public string Teacher { get; set; }
+    [Required]
+    public string Type { get; set; }
     // [Required]
     // public string Subject { get; set; }
     // [Required]

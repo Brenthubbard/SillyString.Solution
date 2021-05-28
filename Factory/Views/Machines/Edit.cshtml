@@ -2,30 +2,30 @@
   Layout = "_Layout";
 }
 
-@model UniversityRegistrar.Models.Course
+@model Factory.Models.Machine
 
 <h2>Edit</h2>
 
-<h4>Edit this course: @Html.DisplayFor(model => model.Name)</h4>
+<h4>Edit this Machine: @Html.DisplayFor(model => model.Name)</h4>
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.CourseId)
+  @Html.HiddenFor(model => model.MachineId)
 
-  @Html.LabelFor(model => model.Teacher)
-  @Html.EditorFor(model => model.Teacher)
+  @Html.LabelFor(model => model.Type)
+  @Html.EditorFor(model => model.Type)
 
-  @Html.LabelFor(model => model.Subject)
+  @* @Html.LabelFor(model => model.Subject)
   @Html.EditorFor(model => model.Subject)
 
   @Html.LabelFor(model => model.CourseNumber)
   @Html.EditorFor(model => model.CourseNumber)
 
   @Html.LabelFor(model => model.NumberOfCredits)
-  @Html.EditorFor(model => model.NumberOfCredits)
+  @Html.EditorFor(model => model.NumberOfCredits) *@
 
-  @Html.Label("Select Student")
-  @Html.DropDownList("StudentId")
+  @Html.Label("Select Engineer")
+  @Html.DropDownList("EngineerId")
 
   <input type="submit" value="Save" />
 }

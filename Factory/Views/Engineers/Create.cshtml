@@ -2,23 +2,23 @@
   Layout = "_Layout";
 }
 
-@model UniversityRegistrar.Models.Student
+@model Factory.Models.Engineer
 
-<h4>Add a new student</h4>
+<h4>Add a new Engineer</h4>
 
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new {@class = "form-control", type="text", required="required"})
-  @Html.LabelFor(model => model.GPA)
-  @Html.TextBoxFor(model => model.GPA, new {@class = "form-control", type="text", required="number"})
-  @Html.LabelFor(model => model.EnrollmentDate)
-  @Html.TextBoxFor(model => model.EnrollmentDate, new {@class = "form-control", type="date", required="required"})
+  @* @Html.LabelFor(model => model.GPA) *@
+  @* @Html.TextBoxFor(model => model.GPA, new {@class = "form-control", type="text", required="number"}) *@
+  @* @Html.LabelFor(model => model.EnrollmentDate) *@
+  @* @Html.TextBoxFor(model => model.EnrollmentDate, new {@class = "form-control", type="date", required="required"}) *@
 
-  @Html.Label("Select course")
-  @Html.DropDownList("CourseId")
+  @Html.Label("Select Machine")
+  @Html.DropDownList("MachineId")
 
   <br>
-  <input type="submit" value="Add new student" class="btn btn-primary" />
+  <input type="submit" value="Add new Engineer" class="btn btn-primary" />
 }
-<p>@Html.ActionLink("Show all students", "Index")</p>
+<p>@Html.ActionLink("Show all Engineers", "Index")</p>

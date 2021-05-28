@@ -1,25 +1,24 @@
 @{
   Layout = "_Layout";
 }
-@model UniversityRegistrar.Models.Course
-
+@model Factory.Models.Machine
 <h4>Add a new course</h4>
 @using (Html.BeginForm())
 {
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name, new {@class = "form-control", type="text", required="required"})
 
-  @Html.LabelFor(model => model.Teacher)
-  @Html.TextBoxFor(model => model.Teacher , new {@class = "form-control", type="text", required="required"})
+  @Html.LabelFor(model => model.Type)
+  @Html.TextBoxFor(model => model.Type , new {@class = "form-control", type="text", required="required"})
 
-  @Html.LabelFor(model => model.Subject)
-  @Html.TextBoxFor(model => model.Subject, new {@class = "form-control", type="text", required="required"})
+  @* @Html.LabelFor(model => model.Subject)
+  @Html.TextBoxFor(model => model.Subject, new {@class = "form-control", type="text", required="required"}) *@
 
-  @Html.LabelFor(model => model.CourseNumber)
-  @Html.TextBoxFor(model => model.CourseNumber, new {@class = "form-control", type="number", required="required"})
+  @* @Html.LabelFor(model => model.CourseNumber)
+  @Html.TextBoxFor(model => model.CourseNumber, new {@class = "form-control", type="number", required="required"}) *@
 
-  @Html.LabelFor(model => model.NumberOfCredits)
-  @Html.TextBoxFor(model => model.NumberOfCredits, new {@class = "form-control", type="text", required="number"})
-  <input type="submit" class="btn btn-success mt-5" value="Add new course" />
+  @* @Html.LabelFor(model => model.NumberOfCredits)
+  @Html.TextBoxFor(model => model.NumberOfCredits, new {@class = "form-control", type="text", required="number"}) *@
+  <input type="submit" class="btn btn-success mt-5" value="Add new machine" />
 }
-<p>@Html.ActionLink("Show all courses", "Index")</p>
+<p>@Html.ActionLink("Show all engineers", "Index")</p>

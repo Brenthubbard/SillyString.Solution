@@ -2,7 +2,7 @@
   Layout = "_Layout";
 }
 
-@model UniversityRegistrar.Models.Student
+@model Factory.Models.Engineer
 
 <h2>Edit</h2>
 
@@ -10,19 +10,19 @@
 
 @using (Html.BeginForm())
 {
-  @Html.HiddenFor(model => model.StudentId)
+  @Html.HiddenFor(model => model.EngineerId)
 
   @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
-  @Html.LabelFor(model => model.GPA)
-  @Html.EditorFor(model => model.GPA)
-
+  @* @Html.LabelFor(model => model.GPA)
+  @Html.EditorFor(model => model.GPA) *@
+@* 
   @Html.LabelFor(model => model.EnrollmentDate)
-  @Html.EditorFor(model => model.EnrollmentDate)
+  @Html.EditorFor(model => model.EnrollmentDate) *@
 
-  @Html.Label("Select course")
-  @Html.DropDownList("CourseId")
+  @Html.Label("Select machine")
+  @Html.DropDownList("MachineId")
 
   <input type="submit" value="Save" />
 }

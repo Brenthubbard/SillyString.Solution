@@ -2,40 +2,40 @@
   Layout = "_Layout";
 }
 
-@using UniversityRegistrar.Models
-@model UniversityRegistrar.Models.Course
+@using Factory.Models
+@model Factory.Models.Machine
 
 <h2>@Html.DisplayFor(model => model.Name)</h2>
 <hr />
 
-<h3>Course Details</h3>
+<h3>Machine Details</h3>
 
-<h5>Teacher: @Html.DisplayFor(model => model.Teacher)</h5>
-<h5>Subject: @Html.DisplayFor(model => model.Subject) | @Html.DisplayFor(model => model.CourseNumber)</h5>
-<h5>Credit Amount: @Html.DisplayFor(model => model.NumberOfCredits)</h5>
+<h5>Teacher: @Html.DisplayFor(model => model.Type)</h5>
+@* <h5>Subject: @Html.DisplayFor(model => model.Subject) | @Html.DisplayFor(model => model.CourseNumber)</h5>
+  <h5>Credit Amount: @Html.DisplayFor(model => model.NumberOfCredits)</h5> *@
 
-<p>@Html.ActionLink("Back to All Courses", "Index")</p>
-<p>@Html.ActionLink("Edit Course", "Edit", new { id = Model.CourseId })</p>
-<p>@Html.ActionLink("Delete Course", "Delete", new { id = Model.CourseId })</p>
-@* <p>@Html.ActionLink("Add New Student", "Create", "Students", new {id = Model.JoinEntities.Student.StudentId})</p> *@
+<p>@Html.ActionLink("Back to All Machines", "Index")</p>
+<p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Add New Engineer", "Create", "engineers", new {id = Model.JoinEntities.Engineer.EngineerId})</p>
 @* JoinEntities is the iterable object
   Model.JoinEntities[0] <- some number to indicate index. (0)
 
 *@
 
-<h5>Current Students Attending @Html.DisplayFor(model => model.Name)</h5>
+<h5>Current Engineers licensed @Html.DisplayFor(model => model.Name)</h5>
 
 @if (@Model.JoinEntities.Count == 0)
 {
-  <p>This Course does not have any students enrolled yet.</p>
+  <p>This Machine does not have any Engineers licensed to work on it yet.</p>
 }
 else
 {
-  <h4>Students the course has enrolled</h4>
+  <h4>Engineers the machine has licensed to work on it.</h4>
   <ul>
     @foreach (var join in Model.JoinEntities)
     {
-      <li>@Html.ActionLink($"{@join.Student.Name}", "Details", "Students", new {id = join.Student.StudentId})</li>
+      <li>@Html.ActionLink($"{@join.Engineer.Name}", "Details", "Engineers", new {id = join.Enigneer.EngineerId})</li>
     }
   </ul>
 }
