@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
-using UniversityRegistrar.Models;
+using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace UniversityRegistrar.Controllers
+namespace Factory.Controllers
 {
-  public class StudentsController : Controller
+  public class EngineersController : Controller
   {
     public ActionResult Index()
     {
@@ -23,9 +23,9 @@ namespace UniversityRegistrar.Controllers
       return View(thisStudent);
     }
 
-    private readonly UniversityRegistrarContext _db;
+    private readonly FactoryContext _db;
 
-    public StudentsController(UniversityRegistrarContext db)
+    public StudentsController(FactoryContext db)
     {
       _db = db;
     }
