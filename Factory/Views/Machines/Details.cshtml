@@ -11,17 +11,6 @@
 <h3>Machine Details</h3>
 
 <h5>Type of Machine: @Html.DisplayFor(model => model.MachineType)</h5>
-@* <h5>Subject: @Html.DisplayFor(model => model.Subject) | @Html.DisplayFor(model => model.CourseNumber)</h5>
-  <h5>Credit Amount: @Html.DisplayFor(model => model.NumberOfCredits)</h5> *@
-
-<p>@Html.ActionLink("Back to All Machines", "Index")</p>
-<p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
-<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>
-@* <p>@Html.ActionLink("Add New Engineer", "Create", "engineers", new {id = Model.JoinEntities.Engineer.EngineerId})</p> *@
-@* JoinEntities is the iterable object
-  Model.JoinEntities[0] <- some number to indicate index. (0)
-
-*@
 
 <h5>Current Engineers licensed @Html.DisplayFor(model => model.Name)</h5>
 
@@ -39,3 +28,15 @@ else
     }
   </ul>
 }
+@* <h5>Subject: @Html.DisplayFor(model => model.Subject) | @Html.DisplayFor(model => model.CourseNumber)</h5>
+  <h5>Credit Amount: @Html.DisplayFor(model => model.NumberOfCredits)</h5> *@
+
+<p>@Html.ActionLink("Back to All Machines", "Index")</p>
+<p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Add a Engineer", "AddEngineer", new { id = Model.MachineId})</p>
+@* <p>@Html.ActionLink("Add New Engineer", "Create", "engineers", new {id = Model.JoinEntities.Engineer.EngineerId})</p> *@
+@* JoinEntities is the iterable object
+  Model.JoinEntities[0] <- some number to indicate index. (0)
+
+*@

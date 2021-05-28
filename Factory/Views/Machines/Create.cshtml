@@ -11,8 +11,9 @@
   @Html.LabelFor(model => model.MachineType)
   @Html.TextBoxFor(model => model.MachineType , new {@class = "form-control", type="text", required="required"})
 
-
+  @Html.Label("Select engineer")
+  @Html.DropDownList("EngineerId")
 
   <input type="submit" class="btn btn-success mt-5" value="Add new machine" />
 }
-<p>@Html.ActionLink("Show all engineers", "Index")</p>
+<p>@Html.ActionLink("Show all Machines", "Index")</p>
