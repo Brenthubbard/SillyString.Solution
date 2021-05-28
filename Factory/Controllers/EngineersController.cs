@@ -9,41 +9,41 @@ namespace Factory.Controllers
 {
   public class EngineersController : Controller
   {
+    private readonly FactoryContext _db;
+
+    public EngineersController(FactoryContext db)
+    {
+      _db = db;
+    }
     public ActionResult Index()
     {
-      return View(_db.Students.ToList());
+      return View(_db.Engineers.ToList());
     }
 
     public ActionResult Details(int id)
     {
-      var thisStudent = _db.Students
-        .Include(student => student.JoinEntities)
-        .ThenInclude(join => join.Course)
-        .FirstOrDefault(student => student.StudentId == id);
-      return View(thisStudent);
+      var thisEngineer = _db.Engineers
+        .Include(engineer => engineer.JoinEntities)
+        .ThenInclude(join => join.Machine)
+        .FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
-    private readonly FactoryContext _db;
-
-    public StudentsController(FactoryContext db)
-    {
-      _db = db;
-    }
 
     public ActionResult Create()
     {
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
       return View();
     }
 
     [HttpPost]
-    public ActionResult Create(Student student, int CourseId)
+    public ActionResult Create(Engineer engineer, int MachineId)
     {
-      _db.Students.Add(student);
+      _db.Engineers.Add(engineer);
       _db.SaveChanges();
-      if (CourseId != 0)
+      if (MachineId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -51,36 +51,36 @@ namespace Factory.Controllers
 
     public ActionResult Edit(int id)
     {
-      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
-      return View(thisStudent);
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisEngineer);
     }
     [HttpPost]
-    public ActionResult Edit(Student student, int CourseId)
+    public ActionResult Edit(Engineer engineer, int MachineId)
     {
-      if (CourseId != 0)
+      if (MachineId != 0)
       {
 
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
       }
-      _db.Entry(student).State = EntityState.Modified;
+      _db.Entry(engineer).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     public ActionResult AddCourse(int id)
     {
-      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-      ViewBag.CourseId = new SelectList(_db.Courses, "CourseId", "Name");
-      return View(thisStudent);
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+      return View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult AddCourse(Student student, int CourseId)
+    public ActionResult AddMachine(Engineer engineer, int MachineId)
     {
-      if (CourseId != 0)
+      if (MachineId != 0)
       {
-        _db.CourseStudent.Add(new CourseStudent() { CourseId = CourseId, StudentId = student.StudentId });
+        _db.MachineEngineer.Add(new MachineEngineer() { MachineId = MachineId, EngineerId = engineer.EngineerId });
       }
       _db.SaveChanges();
       return RedirectToAction("Idex");
@@ -88,24 +88,24 @@ namespace Factory.Controllers
 
     public ActionResult Delete(int id)
     {
-      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-      return View(thisStudent);
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      return View(thisEngineer);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisStudent = _db.Students.FirstOrDefault(student => student.StudentId == id);
-      _db.Students.Remove(thisStudent);
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id);
+      _db.Engineers.Remove(thisEngineer);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
 
     [HttpPost]
-    public ActionResult DeleteCourse(int joinId)
+    public ActionResult DeleteMachine(int joinId)
     {
-      var JoinEntry = _db.CourseStudent.FirstOrDefault(entry => entry.CourseStudentId == joinId);
-      _db.CourseStudent.Remove(JoinEntry);
+      var JoinEntry = _db.MachineEngineer.FirstOrDefault(entry => entry.MachineEngineerId == joinId);
+      _db.MachineEngineer.Remove(JoinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

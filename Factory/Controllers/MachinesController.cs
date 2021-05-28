@@ -1,24 +1,24 @@
 using Microsoft.AspNetCore.Mvc;
-using UniversityRegistrar.Models;
+using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace UniversityRegistrar.Controllers
+namespace Factory.Controllers
 {
-  public class CoursesController : Controller
+  public class MachineController : Controller
   {
-    private readonly UniversityRegistrarContext _db;
+    private readonly FactoryContext _db;
 
-    public CoursesController(UniversityRegistrarContext db)
+    public MachineController(FactoryContext db)
     {
       _db = db;
     }
     public ActionResult Index()
 
     {
-      List<Course> model = _db.Courses.ToList();
+      List<Machine> model = _db.Machines.ToList();
       return View(model);
     }
     public ActionResult Create()
@@ -28,9 +28,9 @@ namespace UniversityRegistrar.Controllers
     }
 
     [HttpPost]
-    public ActionResult Create(Course course)
+    public ActionResult Create(Machine machine)
     {
-      _db.Courses.Add(course);
+      _db.Machines.Add(machine);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
@@ -38,36 +38,36 @@ namespace UniversityRegistrar.Controllers
     public ActionResult Details(int id)
 
     {
-      var thisCourse = _db.Courses
-      .Include(course => course.JoinEntities)
-      .ThenInclude(join => join.Student)
-      .FirstOrDefault(course => course.CourseId == id);
-      return View(thisCourse);
+      var thisMachine = _db.Machines
+      .Include(machine => machine.JoinEntities)
+      .ThenInclude(join => join.Engineer)
+      .FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
     }
     public ActionResult Edit(int id)
     {
-      ViewBag.StudentId = new SelectList(_db.Students, "StudentId", "Name");
-      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      return View(thisCourse);
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
     }
     [HttpPost]
 
-    public ActionResult Edit(Course course)
+    public ActionResult Edit(Machine machine)
     {
-      _db.Entry(course).State = EntityState.Modified;
+      _db.Entry(machine).State = EntityState.Modified;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
     public ActionResult Delete(int id)
     {
-      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      return View(thisCourse);
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      return View(thisMachine);
     }
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-      var thisCourse = _db.Courses.FirstOrDefault(course => course.CourseId == id);
-      _db.Courses.Remove(thisCourse);
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
+      _db.Machines.Remove(thisMachine);
       _db.SaveChanges();
       return RedirectToAction("Index");
     }

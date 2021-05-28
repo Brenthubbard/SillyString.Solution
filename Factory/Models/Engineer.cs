@@ -2,22 +2,22 @@ using System.Collections.Generic;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace UniversityRegistrar.Models
+namespace Factory.Models
 {
-  public class Student
+  public class Engineer
   {
-    public Student()
+    public Engineer()
     {
-      this.JoinEntities = new HashSet<CourseStudent>();
+      this.JoinEntities = new HashSet<MachineEngineer>();
     }
     [Required]
-    public int StudentId { get; set; }
+    public int EngineerId { get; set; }
     [Required]
     public string Name { get; set; }
-    public float GPA {get; set;}
-    [Required]
-    public DateTime EnrollmentDate {get; set;}
+    // public float GPA {get; set;}
+    // [Required]
+    // public DateTime EnrollmentDate {get; set;}
     
-    public virtual ICollection<CourseStudent> JoinEntities { get;}
+    public virtual ICollection<MachineEngineer> JoinEntities { get;}
   }
 }

@@ -1,11 +1,11 @@
-namespace UniversityRegistrar.Models
+namespace Factory.Models
 {
- public class CourseStudent
+ public class MachineEngineer
   {       
-    public int CourseStudentId { get; set; }
-    public int StudentId { get; set; }
-    public int CourseId { get; set; }
-    public virtual Student Student { get; set; }
-    public virtual Course Course { get; set; }
+    public int MachineEngineerId { get; set; }
+    public int EngineerId { get; set; }
+    public int MachineId { get; set; }
+    public virtual Engineer Engineer { get; set; }
+    public virtual Machine Machine { get; set; }
   }
 }
