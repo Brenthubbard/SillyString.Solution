@@ -2,18 +2,14 @@
   Layout = "_Layout";
 }
 
-@using Factory.Models
+
 @model Factory.Models.Machine
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
-<hr />
-
 <h3>Machine Details</h3>
-
+<hr />
+@* <h2>@Html.DisplayFor(model => model.Name)</h2> *@
+<h5>Name of Machine @Html.DisplayFor(model => model.Name)</h5>
 <h5>Type of Machine: @Html.DisplayFor(model => model.MachineType)</h5>
-
-<h5>Current Engineers licensed @Html.DisplayFor(model => model.Name)</h5>
-
 @if (@Model.JoinEntities.Count == 0)
 {
   <p>This Machine does not have any Engineers licensed to work on it yet.</p>
@@ -25,18 +21,14 @@ else
     @foreach (var join in Model.JoinEntities)
     {
       <li>@Html.ActionLink($"{@join.Engineer.Name}", "Details", "Engineers", new {id = join.Engineer.EngineerId})</li>
+    
     }
   </ul>
 }
-@* <h5>Subject: @Html.DisplayFor(model => model.Subject) | @Html.DisplayFor(model => model.CourseNumber)</h5>
-  <h5>Credit Amount: @Html.DisplayFor(model => model.NumberOfCredits)</h5> *@
+
 
 <p>@Html.ActionLink("Back to All Machines", "Index")</p>
 <p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
 <p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>
-<p>@Html.ActionLink("Add a Engineer", "AddEngineer", new { id = Model.MachineId})</p>
-@* <p>@Html.ActionLink("Add New Engineer", "Create", "engineers", new {id = Model.JoinEntities.Engineer.EngineerId})</p> *@
-@* JoinEntities is the iterable object
-  Model.JoinEntities[0] <- some number to indicate index. (0)
-
-*@
+@* <p>@Html.ActionLink("Add a Engineer", "AddEngineer", new { id = Model.MachineId})</p> *@
+<p>@Html.ActionLink("Homepage", "Index", "Home")</p>
