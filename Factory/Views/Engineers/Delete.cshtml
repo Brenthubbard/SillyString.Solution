@@ -23,6 +23,7 @@ else
       {
         @Html.Hidden("joinId", @join.MachineEngineerId)
         <input type="submit" value="Delete" />
+        @Html.ActionLink("Delete Machine", "Index")
       }
     }
   </ul>
