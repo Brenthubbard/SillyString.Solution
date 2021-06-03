@@ -11,13 +11,12 @@
 @using (Html.BeginForm())
 {
   @Html.HiddenFor(model => model.MachineId)
-
-  @Html.LabelFor(model => model.MachineType)
-  @Html.EditorFor(model => model.MachineType)
-
+ 
    @Html.LabelFor(model => model.Name)
   @Html.EditorFor(model => model.Name)
 
+  @Html.LabelFor(model => model.MachineType)
+  @Html.EditorFor(model => model.MachineType)
 
   @Html.Label("Select Engineer")
   @Html.DropDownList("EngineerId")

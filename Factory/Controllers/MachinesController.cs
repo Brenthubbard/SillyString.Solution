@@ -53,11 +53,18 @@ namespace Factory.Controllers
     }
     [HttpPost]
 
-    public ActionResult Edit(Machine machine)
+    public ActionResult Edit(Machine machine, int[] engineerIds)
     {
-      _db.Entry(machine).State = EntityState.Modified;
-      _db.SaveChanges();
-      return RedirectToAction("Index");
+      foreach (int EngineerId in engineerIds)
+      {
+        MachineEngineer joinEntry = _db.MachineEngineer.Where(entry => entry.MachineId == machine.MachineId && entry.EngineerId == EngineerId).Single();
+        _db.MachineEngineer.Remove(joinEntry);
+      }
+      {
+        _db.Entry(machine).State = EntityState.Modified;
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+      }
     }
     public ActionResult Delete(int id)
     {
