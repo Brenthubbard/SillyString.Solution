@@ -52,19 +52,16 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
     [HttpPost]
-
-    public ActionResult Edit(Machine machine, int[] engineerIds)
+    public ActionResult Edit(Machine machine, int EngineerId)
     {
-      foreach (int EngineerId in engineerIds)
+      if (EngineerId != 0)
       {
-        MachineEngineer joinEntry = _db.MachineEngineer.Where(entry => entry.MachineId == machine.MachineId && entry.EngineerId == EngineerId).Single();
-        _db.MachineEngineer.Remove(joinEntry);
+
+        _db.MachineEngineer.Add(new MachineEngineer() { EngineerId = EngineerId, MachineId = machine.MachineId });
       }
-      {
-        _db.Entry(machine).State = EntityState.Modified;
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-      }
+      _db.Entry(machine).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
     public ActionResult Delete(int id)
     {
